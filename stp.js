@@ -2,7 +2,7 @@ const { parse } = require('fast-xml-parser');
 const fs = require('fs');
 
 const xmlFile = process.argv[2];
-const imagePath = process.argv[3];
+const mediaDir = `${require('os').homedir()}/Library/Application Support/Anki2/User 1/collection.media`;
 
 const xml = fs.readFileSync(xmlFile, 'utf8');
 const data = parse(xml, { ignoreAttributes: false, attributeNamePrefix: '' });
@@ -22,9 +22,9 @@ const tags = {
 
 const getQuestion = ({ question, answer, id, chapter }) => {
     const image = `p${id}.png`;
-    const hasImage = fs.existsSync(`${imagePath}/${image}`);
+    const hasImage = fs.existsSync(`${mediaDir}/${image}`);
     return ({
-        id,
+        id: `stp:${id}`,
         question,
         image: hasImage ? `<img src="${image}">` : '',
         answer1: answer[0].text,

@@ -45,7 +45,7 @@ const formatQuestion = ({ code, name, answers, solution, referencecode, typecode
     const image = typecode ? `${typecode.slice(0,-4)}.webp` : `${code}.webp`;
     const hasImage = fs.existsSync(`${mediaDir}/${image}`);
     return [
-        code,
+        `ipilot:${code}`,
         name.replace(/\t/g, '').replace(/\\n/g, '<br />'),
         hasImage ? `<img src="${image}">` : '',
         formatAnswer(answers[0]),
