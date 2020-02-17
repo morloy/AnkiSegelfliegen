@@ -38,7 +38,7 @@ Object.keys(questions).forEach(id => {
 
 const formatAnswer = (answer) => {
     if (!answer) return '';
-    return answer.name.replace(/\t/g, '');
+    return answer.name.replace(/\t/g, '').replace(/\\n/g, '<br />');
 }
 
 const formatQuestion = ({ code, name, answers, solution, referencecode, typecode }, tag) => {
@@ -46,7 +46,7 @@ const formatQuestion = ({ code, name, answers, solution, referencecode, typecode
     const hasImage = fs.existsSync(`${mediaDir}/${image}`);
     return [
         code,
-        name.replace(/\t/g, ''),
+        name.replace(/\t/g, '').replace(/\\n/g, '<br />'),
         hasImage ? `<img src="${image}">` : '',
         formatAnswer(answers[0]),
         formatAnswer(answers[1]),
